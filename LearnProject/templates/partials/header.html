@@ -1,0 +1,35 @@
+{% load static %}
+
+<div class="ui menu">
+
+    <div class="ui container">
+        <a href="" class="header item">
+            <img class="logo" src="{% static 'img/team_3.jpg' %}" alt="" />
+        </a>
+        <div class="right item">
+            <a href="{% url 'create_todo'%}" class="ui primary button">Create todo</a>
+            {% if request.user.is_authenticated%}
+            
+
+            <div class="ui simple dropdown item">
+                User X <i class="dropdown icon"></i>
+                <div class="menu">
+                    <form class="ui large form" action="" method="post">
+                        <input class="ui button" type="submit" value="Sign out"/>
+                    </form>
+                </div>
+
+            </div>
+            {%else%}
+            <div class="ui item">
+                <a href={% url 'login' %} class="ui primary button">Login</a>
+            </div>
+
+            <div class="ui item">
+                <a href={% url 'register' %} class="ui primary button">register</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+</div>

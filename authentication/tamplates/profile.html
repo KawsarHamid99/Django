@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Profile</h1>
+    <h3>welcome : {{name}}</h3>
+    <br>
+    {% if user != None %}
+    <h2>List Of User:</h2>
+    {% for use in user %}
+    <a href="{% url 'userdetails' use.id %}">{{use.id}}  {{use.username}}</a> <br>
+
+    {% endfor %}
+    {% endif %}
+
+    <br><br>
+
+
+    <form action="" method="post">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+        <small>error</small>
+    {% endfor %}
+    {% endif %}
+
+
+    {% for fm in form %}
+    {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+    {% endfor %}
+
+    <input type="submit" value="Submit">
+    </form>
+
+    
+    <br>
+    {% if messages %}
+    {% for message in messages %}
+    <small {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</small>
+    {% endfor %}
+    {% endif %}
+
+    <a href="{% url 'changePassword' %}">change password</a>
+    <br>
+    <a href="{% url 'user_changePassword_withoutold' %}">change password without old</a>
+    <br>
+    <a href="{% url 'logout' %}">logout</a>
+</body>
+</html>

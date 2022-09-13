@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,th,tr,td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    
+    <table>
+        <h3>Post all data</h3>
+        <th>post_title</th>
+        <th>post_cat</th>
+        <th>post_published_date</th>
+        {% for dt in data1 %}
+        <tr>
+            <td>{{dt.post_title}}</td>
+            <td>{{dt.post_cat}}</td>
+            <td>{{dt.post_published_date}}</td>
+            
+        </tr>
+
+        {% endfor %}
+
+    </table>
+    <br>
+
+    <table>
+        <h3>Post Filtered data</h3>
+        <th>post_title</th>
+        <th>post_cat</th>
+        <th>post_published_date</th>
+        {% for dt in data1 %}
+        <tr>
+            <td>{{dt.post_title}}</td>
+            <td>{{dt.post_cat}}</td>
+            <td>{{dt.post_published_date}}</td>
+            
+        </tr>
+
+        {% endfor %}
+
+    </table>
+    <br>
+
+    <table>
+
+    <h3>Post data Filtered by username</h3>
+        <th>post_title</th>
+        <th>post_cat</th>
+        <th>post_published_date</th>
+        {% for dt in data1 %}
+        <tr>
+            <td>{{dt.post_title}}</td>
+            <td>{{dt.post_cat}}</td>
+            <td>{{dt.post_published_date}}</td>
+            
+        </tr>
+
+        {% endfor %}
+
+    </table>
+    <br>
+
+
+</body>
+</html>

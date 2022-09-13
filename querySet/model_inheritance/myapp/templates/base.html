@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,td,th{
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    <h3>student's Info</h3>
+    <table>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Fees</th>
+        <th>Date</th>
+        {% for student in student %}
+        <tr>
+            <td>{{student.id}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.age}}</td>
+            <td>{{student.fees}}</td>
+            <td>{{student.date}}</td>
+        </tr>
+
+        {% endfor %}
+    </table>
+
+
+    <br>
+    <h3>Teacher's Info</h3>
+    <table>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Salary</th>
+        <th>Date</th>
+        {% for teacher in teacher %}
+        <tr>
+            <td>{{teacher.id}}</td>
+            <td>{{teacher.name}}</td>
+            <td>{{teacher.age}}</td>
+            <td>{{teacher.salary}}</td>
+            <td>{{teacher.date}}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <br>
+    <h3>contractor's Info</h3>
+    <table>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Date</th>
+        {% for teacher in teacher %}
+        <tr>
+            <td>{{teacher.id}}</td>
+            <td>{{teacher.name}}</td>
+            <td>{{teacher.age}}</td>
+            <td>{{teacher.date}}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    
+
+</body>
+</html>

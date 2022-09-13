@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Session</title>
+</head>
+<body>
+    <h1>Get Session</h1>
+    {{num}} <br>
+    {{request.session.get_session_cookie_age}} <br> 
+    {{request.session.get_expiry_age}} <br>
+    {{request.session.get_expiry_date}} <br>
+    {{request.session.get_expire_at_browser_close}} <br>
+    
+    <br><br>
+    <hr><hr>
+    <p>
+        {% for key in request.session.keys %}
+            {{key}} <br>
+        {% endfor %}
+    </p>
+<hr>
+    <p>
+        {% for key in keys %}
+            {{key}} <br>
+        {% endfor %}
+    </p>
+<hr>
+    <p>
+        {% for item,value in items %}
+            {{item}} : {{value}} <br>
+        {% endfor %}
+    </p>
+<hr>
+    <p>
+        <h5>shows the default value " age "</h5>
+        <h3>setdefault</h3>
+        {{set_default}}
+    </p>
+
+</body>
+</html>

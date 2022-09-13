@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,th,tr,td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    
+    <table>
+        <h3>Page all data</h3>
+        <th>User ID</th>
+        <th>Page name</th>
+        <th>Page Category</th>
+        <th>Page publish date</th>
+        {% for dt in data1 %}
+        <tr>
+            <td>{{dt.user_id}}</td>
+            <td>{{dt.page_name}}</td>
+            <td>{{dt.page_cat}}</td>
+            <td>{{dt.page_published_date}}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+    <br>
+
+    <table>
+        <h3>Page data Filtered</h3>
+        <th>User ID</th>
+        <th>Page name</th>
+        <th>Page Category</th>
+        <th>Page publish date</th>
+        {% for dt in data2 %}
+        <tr>
+            <td>{{dt.user_id}}</td>
+            <td>{{dt.page_name}}</td>
+            <td>{{dt.page_cat}}</td>
+            <td>{{dt.page_published_date}}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+    <br>
+
+    <table>
+        <h3>Page data filtered by user email</h3>
+        <th>User ID</th>
+        <th>Page name</th>
+        <th>Page Category</th>
+        <th>Page publish date</th>
+        {% for dt in data3 %}
+        <tr>
+            <td>{{dt.user_id}}</td>
+            <td>{{dt.page_name}}</td>
+            <td>{{dt.page_cat}}</td>
+            <td>{{dt.page_published_date}}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+    <br>
+
+
+</body>
+</html>

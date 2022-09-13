@@ -1,0 +1,18 @@
+<!-- Form2 is used for get the data from the html page -->
+
+{% extends "enroll/studetails.html"%}
+{% load static %}
+
+
+
+{% block content %}
+<form action="" method="post" novalidate>
+    {% csrf_token %}
+    <table>
+        {{form.as_p}}
+    </table>
+
+    <input type="submit" value="SUBMIT">
+</form>
+
+{% endblock content%}

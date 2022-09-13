@@ -1,0 +1,65 @@
+{% extends "enroll/studetails.html"%}
+{% load static %}
+
+
+
+{% block content %}
+
+<h1>Registration Form </h1>
+<form action="" method="get">
+    <table>
+        {{form}}
+    </table>
+    <input type="submit" value="SUBMIT">
+</form>
+<hr>
+
+<form action="" method="get">
+        {{form.as_table}}
+    <input type="submit" value="SUBMIT">
+</form>
+<hr>
+
+<form action="" method="get">
+        {{form.as_p}}
+    <input type="submit" value="SUBMIT">
+</form>
+<hr>
+
+<form action="" method="get">
+        {{form.as_ul}}
+    <input type="submit" value="SUBMIT">
+</form>
+<hr>
+
+<form action="" method="get">
+        <table>
+            {{form.name}}
+            <br>
+            {{form.email}}
+        </table>
+    <input type="submit" value="SUBMIT">
+</form>
+<hr>
+<hr>
+<hr>
+<h3>
+    
+{{form.name.value}}
+{{form.name.html_name}}
+</h3>
+
+<form action="">
+    {% for field in form%}
+     {{field.label}},
+    {% endfor %}
+</form>
+
+<form action="">
+    {% for field in form%}
+     {{field.label_tag}},
+    {% endfor %}
+</form>
+
+
+{% endblock %}

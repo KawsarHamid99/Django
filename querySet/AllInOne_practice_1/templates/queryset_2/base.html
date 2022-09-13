@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,tr,th,td{
+            border: 1px solid black;
+        }
+        th{
+            background-color: aquamarine;
+            
+        }
+        td{
+            background-color: azure;
+        }
+    </style>
+</head>
+<body>
+    <h3>Hello World</h3>
+    <table>
+        <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Roll</th>
+        <th>Dept</th>
+        <th>Marks</th>
+        <th>Pass Date</th>
+        </tr>
+        <tr>
+            <td>{{student.id}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.roll}}</td>
+            <td>{{student.dept}}</td>
+            <td>{{student.marks}}</td>
+            <td>{{student.pass_date}}</td>
+        </tr>
+    </table>
+</body>
+</html>

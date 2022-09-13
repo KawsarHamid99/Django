@@ -1,0 +1,30 @@
+{% extends "core/base.html"%}
+{% load static %}
+
+{% block content %}
+<div class="mt-5">
+    <div class="text-center">
+        <img src="{% static 'img/IMGe.jpg'%}" class="img-thumbnail" height="100px" width="150px"  alt="PP">
+    </div>
+    <div class="mt-5 text-white">
+        <h1 class="font-weight-bold st-font">Hello,</h1>
+    <div>
+    <div class="px-4" style="line-height:2rem;">
+        <p style="text-indent:100px;">I am <b class="text-warning">Kawsar Hamid</b>Link content — don't copy 
+            & paste — to easily reuse individual content assets across an array of deliverables & outputs.
+            Updates are made once & automatically pushed to all locations where each piece of content is used,
+            making it easy to personalize learning content for individual audiences at scale while 
+            dramatically reducing maintenance time.</p>
+        <p>I am <b class="text-warning">Kawsar Hamid</b>Link content — don't copy 
+          & paste — to easily reuse individual content assets across an array of deliverables & outputs.
+          Updates are made once & automatically pushed to all locations where each piece of content is used,
+          making it easy to personalize learning content for individual audiences at scale while 
+          dramatically reducing maintenance time.</p>
+    </div>
+    <div class="text-center">
+        <a href="{% url 'contact' %}" class="btn btn-outline-warning my-3 mr-5">Hire Me</a>
+        <a href="{% url 'contact' %}" class="btn btn-outline-info my-3">Contact</a>
+    </div>
+</div>
+
+{% endblock content %}
