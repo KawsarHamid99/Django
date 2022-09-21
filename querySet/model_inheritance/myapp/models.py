@@ -24,7 +24,7 @@ class Contractor(CommonInfo):
 
 
 ############# One To One 
-# If you remove a data from parents class,child class's data also be deleted
+# If you remove a data from parents class,child class's data also be deleted if data is not present in child class only parent class data will be deleted
 # If you remove a data from child class,parents class's data also be deleted
 
 class parents(models.Model):

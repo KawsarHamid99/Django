@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'QuerySetApi_1',
     'QuerySetApi_2',
     'QuerySetApi_3',
+    'ModelInheritance','modelManager',
+    'modelRelationship',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     #'QuerySetApi_2.middleware.siteUnderconstraction',
+    #'ModelInheritance.middleware.getMiddleware',
 ]
 
 ROOT_URLCONF = 'AllInOne_practice_1.urls'
@@ -79,10 +82,11 @@ WSGI_APPLICATION = 'AllInOne_practice_1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'AllInOne_practice',
+        
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME':'AllInOne_practice',
         'USER':'postgres',
-        'PASSWORD':'kawsar',
+        "PASSWORD":'kawsar',
         'HOST':'localhost',
         'PORT':'5432',
     }

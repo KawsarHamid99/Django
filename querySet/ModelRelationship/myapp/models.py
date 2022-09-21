@@ -12,13 +12,6 @@ class Page(models.Model):
 
     #user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True,limit_choices_to={"is_staff":True})
     #if staff status is not activate thn can not create pages
-
-
-
-
-
-
-
     page_name=models.CharField(max_length=70)
     page_cat=models.CharField(max_length=70)
     page_published_date=models.DateField()
