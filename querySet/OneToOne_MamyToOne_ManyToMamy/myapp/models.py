@@ -14,7 +14,6 @@ class Post(models.Model):
     post_cat=models.CharField(max_length=70)
     post_published_date=models.DateField()
 
-
 class Song(models.Model):
     user=models.ManyToManyField(User)
     song_name=models.CharField(max_length=100)
