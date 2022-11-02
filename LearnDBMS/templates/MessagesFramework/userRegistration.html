@@ -22,7 +22,7 @@
    </form>
    {% if messages %}
     {% for message in messages %}
-    <span {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</span>
+    <span {% if message.tags %} class="{{message.tags}}" {% endif %}>  {{message}}  <---ss---> </span>
     
     <br>
     <h4>Messages tag: {{message.tags}}</h4>

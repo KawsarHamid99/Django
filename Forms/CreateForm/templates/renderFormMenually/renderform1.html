@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="get">
+        <div>
+            <label for="form.name.id_for_label">{{form.name.label}}:</label>
+            {{form.name}}
+            <br>
+            {{form.name.label_tag}}
+            <br>
+            {{form.name.label}}
+        </div>
+        <hr>
+        {{form.as_p}}
+        <hr>
+        {{form.name.field.required}}
+        <br>
+        {{form.name.html_name}}
+        <br>
+        {{form.name.help_text}}
+        <hr><hr>
+
+        <div>
+            {%  for field in form %}
+            {{field.label_tag}}
+            {{field}}
+            {% endfor %}
+        </div>
+
+        <br>
+        <div>
+            {%  for field in form.visible_fields %}
+            {{field.label_tag}}
+            {{field}}
+            {% endfor %}
+        </div>
+
+        <br>
+        <div>
+            {%  for field in form.hidden_fields %}
+            {{field.label_tag}}
+            {{field}}
+            {% endfor %}
+        </div>
+
+        <h2>Form 2</h2>
+        <div>
+            {{form2.as_p}}
+        </div>
+
+        
+        
+    </form>
+</body>
+</html>

@@ -10,10 +10,10 @@ def reg(request):
         if fm.is_valid():
             fm.save()
             messages.add_message(request,messages.SUCCESS,"Your Account Has ben created !!! ")
-            messages.info(request,"now you can login")
+            messages.info(request,"now you can login")      
             print(messages.get_level(request))
             messages.debug(request,"hello from debug")
-            print(messages.get_level(request))
+            print(f"---------------------{messages.get_level(request)}")
 
             messages.set_level(request,messages.DEBUG)
             messages.debug(request,"hello from NEW debug")
