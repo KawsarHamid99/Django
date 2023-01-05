@@ -1,0 +1,29 @@
+{% extends "myadmin/base.html"  %}
+{% load static %}
+    <title>{% block title %}dashboard{% endblock title %}</title>
+
+{% block page_head %}
+<h1>Welcome <u>{{name}}</u> To Dashboard</h1>
+{% endblock page_head %}
+{% block message %}
+{% endblock message %}
+
+{% block users  %}
+<div>
+    {% if perms.myadmin.add_book %}
+    <input type="submit" value="Add Book">
+    {% endif %}
+    
+
+    {% if perms.auth.add_user %}
+    <br>
+    <input type="submit" value="Add user">
+    {% endif %}
+</div>
+{% endblock users %}
+
+{% block content %}
+{% endblock content %}
+{% block footer %}
+<a href="{% url 'profile' %}">profile</a>
+{% endblock footer %}

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'QuerySetApi_3',
     'ModelInheritance','modelManager',
     'modelRelationship',
+    "ModelsRelationship_2",
 ]
 
 MIDDLEWARE = [

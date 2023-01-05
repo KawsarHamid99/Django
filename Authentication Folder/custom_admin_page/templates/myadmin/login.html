@@ -1,0 +1,11 @@
+{% extends "myadmin/base.html" %}
+
+{% block title %}User Login{% endblock title %}
+
+{% block page_head %}
+    <h1>Login Form</h1>
+    {% endblock page_head %}
+
+{% block footer %}
+    <a href="{% url 'registration' %}">Signup</a>
+{% endblock footer %}

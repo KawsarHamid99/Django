@@ -32,7 +32,7 @@ class parents(models.Model):
     height=models.FloatField()
 class Child(parents):
     name=models.CharField(max_length=60)
-    age=models.IntegerField()
+    age=models.IntegerField()   
 
 
 

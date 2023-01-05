@@ -9,5 +9,6 @@ urlpatterns = [
     path('QuerySetApi_3/',include("QuerySetApi_3.urls")),
     path("ModelInheritance/",include("ModelInheritance.urls")),
     path("modelManager/",include("modelManager.urls")),
-    path("",include("modelRelationship.urls")),
+    path("modelRelationship/",include("modelRelationship.urls")),
+    path("",include("ModelsRelationship_2.urls")),
 ]

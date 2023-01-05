@@ -1,0 +1,17 @@
+{% extends "authapp/base.html" %}
+{% block title %}Login Page{% endblock title %}
+
+{% block content %}
+<h1>Login Page</h1><br>
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {% for fm in form %}
+    {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+    {% endfor %}
+    <br>
+    <input type="submit" value="Sublit">
+
+</form>
+
+{% endblock content %}

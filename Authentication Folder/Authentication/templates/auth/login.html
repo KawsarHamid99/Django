@@ -8,12 +8,14 @@
 </head>
 <body>
     <h1>Login Form</h1>
+    <p>user:kabila</p>
+    <p>pass:Kawsar7225</p>
 
     <form action="" method="post" novalidate>
         {% csrf_token %}
 
             {% if form.non_field_errors %}
-                {% for error in non_field_errors %}
+                {% for error in form.non_field_errors %}
                     <p>{{error}} </p>
                 {% endfor %}
             {% endif %}

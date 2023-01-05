@@ -9,9 +9,24 @@
 <body>
     <h1>Profile Form</h1>
 
-    {% if name %}
-    <h3>Welcome {{name}}</h3>
+    {% if users != None%}
+    <h2>List Of Users</h2>
+    {% for user in users %}
+    <a href="{% url 'userdetails' user.id %}">{{user.username}}</a> <br>
+    {% endfor %}
+    <br>
     {% endif %}
+
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+
+            
+
+        {% for fm in form %}
+        {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br><br>
+        {% endfor %}    
+        <input type="submit" value="Submit">
+    </form>
 
 
     {% if messages %}
@@ -22,5 +37,9 @@
 
     <br>
     <a href=" {% url 'logout' %}">Logout</a>
+    <a href=" {% url 'profile' %}">profile</a>
+    <a href=" {% url 'dashboard' %}">Dashboard</a>
+    <a href=" {% url 'changepass' %}">Change Pasword</a>
+    <a href=" {% url 'Permission_Based_Profile' %}">Permission_Based_Profile</a>
 </body>
 </html>

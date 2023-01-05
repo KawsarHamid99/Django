@@ -1,0 +1,26 @@
+{% extends "myadmin/base.html" %}
+
+{% block title %}User Profile{% endblock title %}
+
+{% block page_head %}
+    <h1>Welcome to  Form</h1>
+{% endblock page_head %}
+
+{% block users  %}
+ {% if users %}
+ <br>
+ <h3><u>User List</u></h3>
+ {% for user in users %}
+    <a href="{% url 'edit_user' user.id %}">{{user}}</a> <br>
+ {% endfor %}
+ <br><br>
+ {% endif %}
+{% endblock users %}
+
+
+{% block footer %}
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="{% url 'changepassword' %}">Change Password</a>
+    <a href="{% url 'setpassword' %}">Set password</a>
+    <a href="{% url 'permission' %}">Permission</a>
+{% endblock footer %}

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Student,Teacher
+from django.db.models import Q
 # Create your views here.
 
 ###   QuerySet API Method That Return New Query Set
