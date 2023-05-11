@@ -28,7 +28,7 @@ def start_with_s(value):
         raise forms.ValidationError(' Should be start with s') 
 
 class RegForm(forms.Form):
-    name=forms.CharField()
+    name =forms.CharField()
     dept=forms.CharField(validators=[validators.MaxLengthValidator(10)])
     group=forms.CharField(validators=[start_with_s])
     email=forms.EmailField()

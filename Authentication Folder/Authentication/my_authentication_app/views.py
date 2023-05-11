@@ -86,7 +86,7 @@ def logout_user(request):
 def user_changepass(request):
     if request.user.is_authenticated:
         if request.method=="POST":
-            fm=PasswordChangeForm(request=request.user,data=request.POST)
+            fm=PasswordChangeForm(user=request.user,data=request.POST)
             if fm.is_valid():
                 fm.save()
                 update_session_auth_hash(request,fm.user)
@@ -103,7 +103,7 @@ def user_changepass(request):
 def user_changepass_without_old(request):
     if request.user.is_authenticated:
         if request.method=="POST":
-            fm=SetPasswordForm(request=request.user,data=request.POST)
+            fm=SetPasswordForm(user=request.user,data=request.POST)
             if fm.is_valid():
                 fm.save()
                 update_session_auth_hash(request,fm.user)

@@ -1,0 +1,17 @@
+{% extends "authapp/base.html" %}
+
+
+{% block content %}
+<h1>welcome <u>{{name}}</u> to DashBoard</h1>
+
+{% if perms.authapp.add_student %}
+<input type="button" value="Boro Button">
+{% endif %}
+
+<br>
+{% if perms.authapp.view_student %}
+<input type="button" value="View Button">
+{% endif %}
+<br>
+<a href="{% url 'profile' %}">Profile</a>
+{% endblock content %}

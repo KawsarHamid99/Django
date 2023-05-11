@@ -14,7 +14,7 @@ Clr_choice=[
 class StudentForm(forms.Form):
     name=forms.CharField(required=False, widget=forms.TextInput(attrs={'class':'form-control','id':'uniqueid'}))
     email=forms.EmailField(required=False,disabled=True,initial="kasar@gmail.com", label_suffix=" :-: ")
-    fav_clr=forms.MultipleChoiceField(required=False,widget=forms.CheckboxSelectMultiple,choices=Clr_choice)
+    fav_clr=forms.MultipleChoiceField(required=False,widget=forms.CheckboxSelectMultiple(choices=Clr_choice))
 
 
 

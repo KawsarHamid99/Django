@@ -148,10 +148,6 @@ def address(request):
  add=Customer.objects.filter(user=request.user)
  return render(request, 'app/address.html',{'add':add,"active":"btn-primary"})
 
-@login_required
-def orders(request):
-  op=OrderPlaced.objects.filter(user=request.user)
-  return render(request, 'app/orders.html',{'order_placed':op})
 
 def change_password(request):
  return render(request, 'app/changepassword.html')
@@ -176,7 +172,7 @@ class CustomerRegistrationView(View):
  def get(self,request):
   form=CustomerRegistrationForm()
   return render(request,'app/customerregistration.html',{'form':form})
-  
+ 
  def post(self,request):
   form=CustomerRegistrationForm(request.POST)
   if form.is_valid():
@@ -184,8 +180,12 @@ class CustomerRegistrationView(View):
    messages.success(request,"Registration has been completed successfully...")
   return render(request,'app/customerregistration.html',{'form':form}) 
  
+
+
 class PasswordChangeDoneView(View):
   pass
+
+
 
 @login_required
 def checkout(request):
@@ -202,8 +202,8 @@ def checkout(request):
       amount += tempamount 
     totalamount = amount+shipping_amount
   totalitem=len(Cart.objects.filter(user=request.user))
-  
   return render(request, 'app/checkout.html',{'add':add,'totalamount':totalamount,"cart_items":cart_items,"totalitem":totalitem})
+
 
 
 @login_required
@@ -216,6 +216,11 @@ def payment_done(request):
     OrderPlaced(user=user,customer=customer,product=c.product,quantity=c.quantity).save()
     c.delete()
   return redirect("orders")
+
+@login_required
+def orders(request):
+  op=OrderPlaced.objects.filter(user=request.user)
+  return render(request, 'app/orders.html',{'order_placed':op})
 
 
 

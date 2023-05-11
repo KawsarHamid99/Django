@@ -1,0 +1,27 @@
+{% extends 'authapp/base.html' %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block content %}
+ <h3>Profile Page</h3>
+
+    {% if users  %}
+      <h2>List Of Users</h2>
+      {% for user in users %}
+      <a href="{% url 'user_info' user.id  %}">{{user.username}}</a>  <br>
+      {% endfor %}
+    {% endif %}
+
+
+ <form action="" method="post">
+    {% for fm in form %}
+    {% csrf_token %}
+    {{fm.label_tag}} {{fm}}  {{fm.errors|striptags}} <br>
+    {% endfor %}
+    <br>
+    <input type="submit" value="Submit">
+    
+ </form>
+
+ <p>All avaliable options: <a href="{% url 'ChangePassword' %}">1:changePassword </a> <a href="{% url 'set_password' %}">2: changePassword(without old)</a>  <a href="{% url 'dashboard' %}">Dashboard</a>    <a href="{% url 'logout' %}">logout</a></p>
+{% endblock content %}
