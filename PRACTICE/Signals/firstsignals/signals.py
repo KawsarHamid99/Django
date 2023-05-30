@@ -29,4 +29,23 @@ def login_failed(sender,credentials,request,**kwargs):
 
 
 
-@receiver()
+@receiver(pre_save,sender=User)
+def at_beginning_save(sender,instance,**kwargs):
+    print("-----------------------------")
+    print(" Pre Save Signal...")
+    print(f" sender: {sender} \n Instance: {instance} \n kwargs: {kwargs}\n")
+
+
+
+@receiver(post_save,sender=User)
+def at_ending_save(sender,instance,created,**kwargs):
+    print("-----------------------------")
+    if created:
+        print(" post Save created Signal...")
+        print(f" sender: {sender} \n Instance: {instance} \n created:{created} \n kwargs: {kwargs}\n")
+    else:
+        print(" post Save updated Signal...")
+        print(f" sender: {sender} \n Instance: {instance} \n created:{created} \n kwargs: {kwargs}\n")
+
+
+
