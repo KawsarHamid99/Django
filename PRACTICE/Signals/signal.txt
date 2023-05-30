@@ -1,0 +1,95 @@
+Signal
+------------------------------------------------
+
+Receiver Function: A reciver function can be any python function or method.All Receiver function must contain sender
+and keyword argument (**kwargs).
+    def example_func(sender,request,user,**kwargs):
+    pass
+
+Registering reciver function: There are two ways we can connecet a reciver to a signal.
+    1. Manual connect Route:Signal.connect(example_func,sender=None,weak=True,dispatch_uid=None)
+        example_func=the callback function,which will be connected to signal.
+        sender=specifies a particular sender to receive signals form.
+        weak= to prevent garbage collected pass weak=False
+        dispatch_uid= A unique identifier for a signal reciver in cases where duplicate signalsmay be sent. 
+    2. Decorator: @receiver(signal or list of signal,sender)
+------------------------------------------------------------------------------------------
+
+********************Built-in signals******************
+******************************************************
+django.contrib.auth.signals import user_logged_in,user_logged_out,user_login_failed
+
+
+
+Login and Logout Signal:
+    user_logged_in(sender,request,user) -sent when user logged in successfully
+
+    sender-the class of the user that just logged in or call for logout.
+    request- The current HttpRequest instance
+    user- user instance that just logged in
+
+
+    user_logged_out(sender,request,user) -sent when user logged out successfully
+
+    sender-the class of the user that just logout or None if user is not authenticated
+    request- The current HttpRequest instance
+    user- user instance that just logged in or None if user is not authenticated
+
+    user_login_failed(sender,credential,request)- sent when the uder failed to login successfully.
+
+
+__________________________Implementation_____________________
+
+1.  create an file name as signals.py and inside that write the code [check signals.py].
+
+2. how to connect the signals.py to the app?
+    * go to apps.py and inside the <app>Config(AppConfig) class override the ready method:
+            def ready(self):
+                #import firstsignals.signals
+                import <appname>.signals
+
+3. go to __init__.py of the app:
+    default_app_config='firstsignals.apps.FirstsignalsConfig'
+   
+    or, go to settings.py and add "firstsignals.apps.FirstsignalsConfig" to INSTALLED_APPS.at this time you don't 
+    have to modify __init__.py
+
+    INSTALLED_APPS=[
+        '''
+        '''
+        'firstsignals.apps.FirstsignalsConfig'
+    ]
+
+
+
+
+********************Model signals*********************
+******************************************************
+from django.db.models.signals import pre_init,post_init,pre_save,post_save,pre_delete,post_delete,
+pre_migrate,post_migrate
+
+1. pre_init(sender,args,kwargs)- sent signal beginning of the model's __init__() method
+    sender - The model class that just had an instance created. 
+    args - a list of positional arguments passed to __init__().
+    kwargs - A dictonary of keyword arguments passed to __init__().
+
+2. post_init(sender,instance) - sent signal when model's __init__() got finished.
+    sender is same of pre_init
+    instance - the actual instance of the model that's just been created.
+
+3. pre_save(sender,instance,raw,using,update_fields) - - sent signal beginning of the model's save() method.
+    ->sender  - The model class
+    ->instance  - the actual instance being saved
+    ->raw - A boolean; True If  the model is saved exactly as presented.
+    ->using- the database alias being used.
+    ->update_fields- The set of fields to update as passed to Model.save(), 
+      or None if update_fields was not passed to save().
+
+4. post_save(sender,instance,created,raw,using,update_fields) - Like pre_save, 
+   but sent at the end of the save() method.
+
+   ->created- A boolean; True if a new record was created.
+   ->raw - A boolean; True If  the model is saved exactly as presented.
+
+5. pre_delete(sender,instance,using)
+6. post_delete(sender,instance,using)

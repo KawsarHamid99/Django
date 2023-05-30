@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>get session</title>
+</head>
+<body>
+    <p>name:{{name}}</p>
+    {% for keys,values in request.session.items %}
+    <p>{{keys}}={{values}}</p>
+    {% endfor %}
+    <hr>
+    <p>{{request.session.items}}</p>
+    <p>{{request.session.values}}</p>
+    <p>{{request.session.keys}}</p>
+    <p>{{request.session.get_session_cookie_age}}</p>
+    <p>{{request.session.get_expiry_date}}</p>
+    <p>{{request.session.get_expiry_age}} sec</p>
+    
+</body>
+</html>
