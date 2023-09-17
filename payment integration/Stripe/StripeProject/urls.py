@@ -1,5 +1,5 @@
 """
-URL configuration for DJAJAX_1 project.
+URL configuration for StripeProject project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -19,7 +19,5 @@ from django.urls import path,include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("",include("myapp.urls")),
-    path('jet/',include('jet.urls','jet')),
-    path('jet/dashboard/',include('jet.dashboard.urls','jet-dashboard'))
+    path("",include("myapp.urls"))
 ]
