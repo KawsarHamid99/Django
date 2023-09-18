@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Checkout</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">kxoss</h5>
+                <p class="card-text">Price: $2.00</p>
+                <form id="payment-form" method="post">
+                    {% csrf_token %}
+                    <div id="card-element">
+                        <!-- A Stripe Element will be inserted here. -->
+                    </div>
+                    <!-- Used to display form errors. -->
+                    <div id="card-errors" role="alert"></div>
+                    <button id="submit-button" class="btn btn-primary">Pay Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Include your Stripe.js script for payment handling -->
+    
+    <script>
+        // your_stripe_script.js
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var stripe = Stripe('pk_live_51NiAmBKNzyjeNcZenY6mb3nt24VyDClEMahaX5kInn9kz2B8FbFoOKXygI2ivgs6uLjjjaVpWm59ByoPhBltjEDX008a948fHU');
+            var elements = stripe.elements();
+        
+            // Create an instance of the card Element.
+            var card = elements.create('card');
+        
+            // Add an instance of the card Element into the `card-element` div.
+            card.mount('#card-element');
+        
+            // Handle form submission and payment processing.
+            var form = document.getElementById('payment-form');
+        
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+            
+                stripe.createToken(card).then(function (result) {
+                    if (result.error) {
+                        // Show error to your customer (e.g., insufficient funds, expired card).
+                        var errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                    } else {
+                        // Token represents a valid payment method. Send this token to your server.
+                        var token = result.token;
+                        // Include the token in a hidden field or send it to your server via AJAX.
+                        var hiddenInput = document.createElement('input');
+                        hiddenInput.setAttribute('type', 'hidden');
+                        hiddenInput.setAttribute('name', 'stripeToken');
+                        hiddenInput.setAttribute('value', token.id);
+                        form.appendChild(hiddenInput);
+                    
+                        // Submit the form.
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>

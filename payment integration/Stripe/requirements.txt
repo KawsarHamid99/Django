@@ -3,6 +3,10 @@ certifi==2023.7.22
 charset-normalizer==3.2.0
 Django==4.2.5
 idna==3.4
+numpy==1.26.0
+pyarrow==13.0.0
+pylance==0.7.4
+python-dotenv==1.0.0
 requests==2.31.0
 sqlparse==0.4.4
 stripe==6.5.0
