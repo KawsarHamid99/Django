@@ -15,4 +15,6 @@ def charge(request,pk=None):
         product=Product.objects.get(id=pk)
     if request.method == 'POST':
         charge=stripe.Charge.create(amount=int(product.price*100),currency='usd',description ='PAYMENT GATE WAY',source=request.POST['stripeToken'])
+        print(request.POST['stripeToken'])
+        print(charge)
         return render(request,"myapp/charge.html")
