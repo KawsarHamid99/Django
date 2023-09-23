@@ -29,7 +29,7 @@
             <a class="btn m-1 border border-danger " href="?page= 1 ">&laquo; first</a>
             <a class="btn m-1 border border-danger " href="?page={{ student_list.previous_page_number }}">previous</a>
             {% endif %}
-            <span class="current-page px-2 ">{{student_list.number}}</span>
+            <span class="current-page px-3 ">{{student_list.number}}</span>
             {% if student_list.has_next %}
                 <a class="btn m-1 border border-danger " href="?page={{ student_list.next_page_number }}">next</a>
                 <a class="btn m-1 border border-danger " href="?page={{ student_list.paginator.num_pages }}"> last &raquo;</a>
