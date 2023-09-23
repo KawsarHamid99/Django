@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container pt-2">
+    <table class="table table-hover border border-dark">
+        <thead>
+          <tr class="border border-dark">
+            <th class="border border-dark" scope="col">#</th>
+            <th class="border border-dark" scope="col">Name</th>
+            <th class="border border-dark" scope="col">Email</th>
+            <th class="border border-dark" scope="col">Faculty</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for student in student_list %}
+            <tr>
+                <th class="border border-dark" scope="row">{{student.id}}</th>
+                <td class="border border-dark">{{student.name}}</td>
+                <td class="border border-dark">{{student.email}}</td>
+                <td class="border border-dark">{{student.faculty}}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    <div class="pagination d-flex justify-content-center ">
+        <span class="step-links bg-success ">
+            {% if student_list.has_previous %}
+            <a class="btn m-1 border border-danger " href="?page= 1 ">&laquo; first</a>
+            <a class="btn m-1 border border-danger " href="?page={{ student_list.previous_page_number }}">previous</a>
+            {% endif %}
+            <span class="current-page px-2 ">{{student_list.number}}</span>
+            {% if student_list.has_next %}
+                <a class="btn m-1 border border-danger " href="?page={{ student_list.next_page_number }}">next</a>
+                <a class="btn m-1 border border-danger " href="?page={{ student_list.paginator.num_pages }}"> last &raquo;</a>
+            {% endif %}
+
+        </span>
+
+    </div>
+</div>
+{% endblock content %}
