@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        .highlight {
+            background-color: yellow !important;
+        }
+    </style>
+
+    <title>Home Page</title>
+</head>
+<body>
+    <h1 class="text-center">DEMO TASK</h1>
+    <hr>
+
+    <div>
+        <h1>{{ product }}</h1>
+        <div class="row py-1 align-items-center">
+            <div class="col-md-2">
+                <p>Choose Processor</p>
+            </div>
+            <div class="col-md-10">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    {% for processor in p %}
+                    <div class="bg-info mx-2">
+                        <input type="radio" class="btn processor-radio" name="processorRadio" value="{{ processor.id }}" id="btnradio{{ processor.id }}" autocomplete="off" {% if forloop.first %}checked{% endif %} >
+                        <label class="choose-spec btn rounded-5" for="btnradio{{ processor.id }}">{{ processor.size }}-{{ processor.id }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row py-1 align-items-center">
+            <div class="col-md-2">
+                <p>Choose RAM</p>
+            </div>
+            <div class="col-md-10">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    {% for ram in r %}
+                    <div class="bg-info mx-2">
+                        <input type="radio" class="btn ram-radio" name="ramRadio" value="{{ ram.id }}" id="btnradio{{ ram.id }}" autocomplete="off">
+                        <label class="choose-spec btn rounded-5" for="btnradio{{ ram.id }}">{{ ram.size }}-{{ ram.id }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row py-1 align-items-center">
+            <div class="col-md-2">
+                <p>Choose SSD</p>
+            </div>
+            <div class="col-md-10">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    {% for ssd in s %}
+                    <div class="bg-info mx-2">
+                        <input type="radio" class="btn ssd-radio" name="ssdRadio" value="{{ ssd.id }}" id="btnradio{{ ssd.id }}" autocomplete="off">
+                        <label class="choose-spec btn rounded-5" for="btnradio{{ ssd.id }}">{{ ssd.size }}-{{ ssd.id }}</label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Add this script after your existing script tag -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const processorRadios = document.querySelectorAll('.processor-radio');
+            const ramRadios = document.querySelectorAll('.ram-radio');
+            const ssdRadios = document.querySelectorAll('.ssd-radio');
+
+            function highlightRelatedButtons(selectedRadio, relatedButtons, relatedIds) {
+              
+                relatedButtons.forEach(button => {
+                    const buttonId = button.value;
+                    if (relatedIds.includes(buttonId)) {
+                      parentdiv=button.parentElement;
+                      //console.log(buttonId)
+                      //console.log(button)
+                      //console.log(parentdiv)
+                      parentdiv.classList.add('highlight');
+
+                    } else {
+                      parentdiv=button.parentElement;
+                      parentdiv.classList.remove('highlight');
+                    }
+                });
+            }
+
+            function getCookie(name) {
+                const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+                return cookieValue ? cookieValue.pop() : '';
+            }
+
+            function handleRadioClick(event) {
+                const selectedRadio = event.target;
+              
+                //selectedRadio.parentElement.classList.add('highlight')
+                if (selectedRadio.classList.contains('processor-radio')) {
+                    // Make AJAX request to get related RAM and SSD IDs
+                    const processorId = selectedRadio.value;
+                    fetch(`/get_related_info/${processorId}/`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const relatedRAMIds = data.ram_ids.map(String);
+                            const relatedSSDIds = data.ssd_ids.map(String);
+                            //console.log(relatedRAMIds)
+                            //console.log(relatedSSDIds)
+
+                            highlightRelatedButtons(selectedRadio, processorRadios, processorId);
+                            highlightRelatedButtons(selectedRadio, ramRadios, relatedRAMIds);
+                            highlightRelatedButtons(selectedRadio, ssdRadios, relatedSSDIds);
+                        })
+                        .catch(error => console.error('Error fetching related info:', error));
+                } else if (selectedRadio.classList.contains('ram-radio')) {
+                    
+
+                    const processorId = selectedRadio.value;
+                    console.log("++++++++++++++++++++")
+                    console.log(processorId)
+                    const csrftoken = getCookie('csrftoken');
+                    fetch(`/filterbyRam/${processorId}/`,{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': csrftoken,
+                            // Add any other headers you may need
+                        },
+                        body: JSON.stringify({
+                            product: {{product.id}},
+                            // Example: key1: 'value1', key2: 'value2'
+                        }),
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            const relatedProcessorsIds = data.processors_ids.map(String);
+                            const relatedSSDIds = data.ssd_ids.map(String);
+                            console.log(relatedProcessorsIds)
+                            console.log(relatedSSDIds)
+
+                            highlightRelatedButtons(selectedRadio, ramRadios, processorId);
+                            highlightRelatedButtons(selectedRadio, processorRadios, relatedProcessorsIds);
+                            highlightRelatedButtons(selectedRadio, ssdRadios, relatedSSDIds);
+                        })
+                        .catch(error => console.error('Error fetching related info:', error));
+                } else if (selectedRadio.classList.contains('ssd-radio')) {
+                    highlightRelatedButtons(selectedRadio, processorRadios);
+                    highlightRelatedButtons(selectedRadio, ramRadios);
+                }
+            }
+
+            processorRadios.forEach(radio => radio.addEventListener('click', handleRadioClick));
+            ramRadios.forEach(radio => radio.addEventListener('click', handleRadioClick));
+            ssdRadios.forEach(radio => radio.addEventListener('click', handleRadioClick));
+        });
+    </script>
+</body>
+</html>
