@@ -1,0 +1,19 @@
+step 1:
+install django,channels,daphne
+
+stepc 2:
+INSTALLED_APPS = [
+    'channels',
+    'daphne',
+    '--------',
+    '--------',
+]
+
+step 3:
+configure the asgi.py file from project folder where settings.py located.
+
+
+step 4:
+configure settings.py file.
+commentout or delete wsgi application.
+ASGI_APPLICATION = 'DjangoRouting.asgi.application'
