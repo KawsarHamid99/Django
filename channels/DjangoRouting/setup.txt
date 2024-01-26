@@ -12,6 +12,10 @@ INSTALLED_APPS = [
 step 3:
 configure the asgi.py file from project folder where settings.py located.
 
+from channels.routing import ProtocolTypeRouter,URLRouter
+application=ProtocolTypeRouter({
+    'http':get_asgi_application(),
+})
 
 step 4:
 configure settings.py file.

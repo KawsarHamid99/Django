@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello world</title>
+</head>
+<body>
+    <h1>hello from home page...</h1>
+    <div id="ct">
+
+    </div>
+</body>
+
+<script>
+    var ws =new WebSocket("ws://127.0.0.1:8000/ws/sc/")
+
+    ws.addEventListener('open',(event)=>{
+        console.log('websockent connection open...',event)
+        ws.send('hello, this message send from client...')
+    })
+
+    ws.addEventListener('message',(event)=>{
+        console.log('Message received from server...',event)
+        document.getElementById('ct').innerText=event.data
+    })
+
+    ws.addEventListener('error',(event)=>{
+        console.log('websocket error occured...',event)
+    })
+
+    ws.addEventListener('close',(event)=>{
+        console.log('websocket connection closed...',event)
+    })
+
+</script>
+</html>
