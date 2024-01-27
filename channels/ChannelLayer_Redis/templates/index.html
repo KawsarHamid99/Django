@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat app</title>
+</head>
+<body>
+    <h1>chat application</h1>
+    <textarea name="" id="chat-log" cols="100" rows="20"></textarea><br>
+    <input type="text" id="chat-message-input" size="100"><br>
+    <input type="button" value="Send" id="chat-message-submit">
+    <h1 id="ct"></h1>
+</body>
+<script>
+    
+    var ws=new WebSocket('ws://127.0.0.1:8000/ws/sc/')
+
+    ws.onopen=function(){
+        console.log('websocket connection open...')
+        ws.send('hi, text send from client...')
+    }
+    ws.onmessage=function(event){
+        console.log('message recieved from server...',event)
+        
+    }
+    ws.onerror=function(event){
+        console.log('websocket error occured',event)
+    }
+    ws.onclose=function(event){
+        console.log('websocket connection closed',event)
+    }
+
+
+</script>
+</html>

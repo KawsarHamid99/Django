@@ -21,3 +21,13 @@ step 4:
 configure settings.py file.
 commentout or delete wsgi application.
 ASGI_APPLICATION = 'DjangoRouting.asgi.application'
+-----------------------------------------------------------------------------------------
+import json
+json.dumps()- convert python dictionary into json string.
+json.loads()- convert json string into python dictionary.
+
+
+JSON.parse() - json string to js object.
+JSON.tringify() - js object to json string.
+
+6379
