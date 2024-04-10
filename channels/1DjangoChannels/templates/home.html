@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Hello</h1>
+
+    <div>
+        <div>
+            <h3>With Eventlistener</h3>
+        </div>
+        <div id="ct">
+
+        </div>
+        <button id="mybtn">mybtn</button>
+    </div>
+
+
+    <div>
+        <div>
+            <h3>Without js eventlistener</h3>
+        </div>
+        <div id="ct2">
+
+        </div>
+    </div>
+    
+</body>
+
+<script>
+    
+
+    function Mysocket()
+    {
+        var ws=new WebSocket("ws://127.0.0.1:8000/ws/sc/")
+        ws.addEventListener('open',(event)=>{
+            console.log('websocket connection open...',event)
+            ws.send('webssocket connected in client...')
+        })
+    
+        ws.addEventListener('message',(event)=>{
+            console.log('message received from server...',event)
+            document.getElementById('ct').innerText=event.data
+        })
+    
+        ws.addEventListener('error',(event)=>{
+            console.log('websocket error occured...',event)
+        })
+    
+        ws.addEventListener('close',(event)=>{
+            console.log('websocket connection closed...',event)
+        })
+
+    }
+    //Mysocket()
+
+    btn=document.getElementById("mybtn")
+    btn.addEventListener('click',function(){
+        Mysocket()
+        
+    })
+    
+
+</script>
+
+<script>
+    var ws2=new WebSocket("ws://127.0.0.1:8000/ws/sc/")
+    ws2.onopen=function(){
+        console.log('websocket connection open from ws2...')
+        ws2.send("ws2 connected")
+    }
+    ws2.onmessage=function(event){
+        console.log('message received from server...',event)
+        console.log(event.data)
+        document.getElementById('ct2').innerText=event.data
+        
+    }
+    ws2.onerror=function(event){
+        console.log('websocket error occured...',event)
+
+    }
+
+    ws2.onclose=function(event){
+        console.log('websocket connection closed...',event)
+    }
+
+
+</script>
+
+
+</html>

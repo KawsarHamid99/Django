@@ -6,15 +6,21 @@
     <title>Chat app</title>
 </head>
 <body>
-    <h1>chat application</h1>
+    <h1>chat application-{{groupname}}</h1>
     <textarea name="" id="chat-log" cols="100" rows="20"></textarea><br>
     <input type="text" id="chat-message-input" size="100"><br>
     <input type="button" value="Send" id="chat-message-submit">
     <h1 id="ct"></h1>
+    {{groupname|json_script:"group-name"}}
 </body>
 <script>
     
-    var ws=new WebSocket('ws://127.0.0.1:8000/ws/sc/')
+    //var ws=new WebSocket('ws://127.0.0.1:8000/ws/ac/')
+    const groupname=JSON.parse(document.getElementById('group-name').textContent)
+    console.log(groupname)
+    console.log(window.location.host)
+    var ws=new WebSocket('ws://'+window.location.host+'/ws/sc/'+groupname+'/')
+    console.log(ws)
 
     ws.onopen=function(){
         console.log('websocket connection open...')
@@ -22,6 +28,8 @@
     }
     ws.onmessage=function(event){
         console.log('message recieved from server...',event)
+        const data=JSON.parse(event.data)
+        document.querySelector('#chat-log').value += (data.msg+'\n')
         
     }
     ws.onerror=function(event){
@@ -29,6 +37,15 @@
     }
     ws.onclose=function(event){
         console.log('websocket connection closed',event)
+    }
+
+    document.getElementById("chat-message-submit").onclick=function(event){
+        const messageInputDom=document.getElementById('chat-message-input')
+        const message=messageInputDom.value
+        ws.send(JSON.stringify({
+            'msg':message
+        }))
+        messageInputDom.value=""
     }
 
 

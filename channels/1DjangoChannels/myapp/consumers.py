@@ -3,44 +3,46 @@ from channels.exceptions import StopConsumer
 from time import sleep
 import asyncio
 
-class MySyncConsumer(SyncConsumer):
+
+class MySyncCunsumer(SyncConsumer):
     def websocket_connect(self,event):
+        print("websocket sync consumer connected...",event)
         self.send({
-            'type':'websocket.accept'
+            'type': 'websocket.accept'
         })
-        print('websocket Sync Consumer connected...',event)
+        print("websocket sync consumer connected...",event)
 
 
     def websocket_receive(self,event):
-        print('websocket Sync Consumer recieved...',event)
-        print(event['text'])
-        for i in range(10):
+        print('websocket sync consumer recieved...',event)
+        for i in range(15):
             self.send({
                 'type':'websocket.send',
-                'text':str(i),
+                'text':str(i)
             })
             sleep(1)
 
-
     def websocket_disconnect(self,event):
-        print('websocket Sync Consumer disconnected...',event)
+        print('websocket sync consumer disconnected...',event)
         raise StopConsumer()
-     
-class MyAyncConsumer(AsyncConsumer):
+
+class MyAsyncConsumer(AsyncConsumer):
     async def websocket_connect(self,event):
+
         await self.send({
             'type':'websocket.accept'
-        })  
-        print('websocket SyncConsumer connected',event)
+        })
+        print("Asyncconsumer Connected...",event)
+    
     async def websocket_receive(self,event):
-        print('websocket SyncConsumer recieved',event)
-        print('connected...',event['text'])
-        for i in range(50):
+        print("websocket AsyncConsumer Recieved...",event)
+        for i in range(10):
             await self.send({
                 'type':'websocket.send',
-                'text': str(i),
+                'text':str(i),
             })
             await asyncio.sleep(1)
+
     async def websocket_disconnect(self,event):
-        print('websocket SyncConsumer disconnected',event)
+        print("websocket SyncConsumer Disconnected",event)
         raise StopConsumer()

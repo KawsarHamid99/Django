@@ -28,6 +28,6 @@ json.loads()- convert json string into python dictionary.
 
 
 JSON.parse() - json string to js object.
-JSON.stringify() - js object to json string.
+JSON.tringify() - js object to json string.
 
 6379
